@@ -9,4 +9,5 @@ class Tipo extends Model
     protected $table = 'tipos';
 
     protected $fillable = ['nome'];
+
 }
