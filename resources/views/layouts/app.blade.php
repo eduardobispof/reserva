@@ -45,9 +45,11 @@
                         <li class="nav-item">
                             <a href=" {{ route('home') }} " class="nav-link">Início</a>
                         </li>
-                        <li class="nav-item">
-                            <a href=" {{ route('equipamentos') }} " class="nav-link">Gerenciar Equipamentos</a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a href=" {{ route('equipamentos') }} " class="nav-link">Gerenciar Equipamentos</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
