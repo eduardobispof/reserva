@@ -16,6 +16,11 @@ class CreateEquipamentosTable extends Migration
         Schema::create('equipamentos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('nome');
+
+            // fk de tipos
+            $table->integer('tipo_id')->unsigned();
+            $table->foreign('tipo_id')->references('id')->on('tipos')->onDelete('cascade');
         });
     }
 
