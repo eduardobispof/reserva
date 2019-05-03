@@ -25,7 +25,7 @@
         }
 
         .card{transition: 0.2s;}
-        .card:hover{transform: scale(1.05);}
+        .card:hover{transform: scale(1.05); box-shadow: 0px 10px 20px #dadbdc;}
     </style>
 </head>
 <body>
@@ -42,7 +42,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a href=" {{ route('home') }} " class="nav-link">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href=" {{ route('equipamentos') }} " class="nav-link">Gerenciar Equipamentos</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

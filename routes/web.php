@@ -23,6 +23,6 @@ Route::get('/index', function(){
 		return view('index');
 });
 
-Route::get('/cadastro', function(){
-	return view('cadastro');
-});
+Route::get('/equipamentos', function(){
+	return view('equipamentos');
+})->name('equipamentos');

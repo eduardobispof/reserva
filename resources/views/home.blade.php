@@ -3,19 +3,19 @@
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-9">
-            <div class="m-1 border p-3 bg-dark">
-                <h2 class="mt-auto mb-auto strong text-light">Suas Reservas</h2>
-                <div class="row justify-content-center p-3">
+        <div class="col-md-8">
+            <div class="m-1 p-3">
+                <h2 class="">Suas Reservas</h2>
+                <div class="row p-3">
                     @for($i=0; $i < 5; $i++)
                         <div class="col-4 p-0">
-                            <div class="m-3">
+                            <div class="m-2">
                                 <div class="card p-2" style="height: 330px;">
                                     <div class="card-body">
-                                        <h4>Nome do Equip</h4>
+                                        <h5>Nome do Equip</h5>
                                         <hr>
                                         <p>Dia: <span class="text-primary">00/00</span></p>
-                                        <p>Horário: <span class="text-info">00:00 - 00:00</span></p>
+                                        <p><span class="text-info">00:00 - 00:00</span></p>
                                         <p>Tombamento</p>
                                         <p>Tipo do equip </p>
                                     </div>
@@ -24,13 +24,13 @@
                             </div>
                         </div>
                         <div class="col-4 p-0">
-                            <div class="m-3">
+                            <div class="m-2">
                                 <div class="card p-2"  style="height: 330px;">
                                     <div class="card-body">
-                                        <h4>Nome Extendido do Equip</h4>
+                                        <h5>Nome Extendido do Equip</h5>
                                         <hr>
                                         <p>Dia: <span class="text-primary">00/00</span></p>
-                                        <p>Horário: <span class="text-info">00:00 - 00:00</span></p>
+                                        <p><span class="text-info">00:00 - 00:00</span></p>
                                         <p>Tombamento</p>
                                         <p>Tipo do equip </p>
                                     </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <div class="m-1 border p-3" style="background-color: #fff;">
                 <h3>Cadastrar Equipamento</h3>
                 <hr>
