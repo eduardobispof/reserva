@@ -24,7 +24,8 @@ class TiposRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'tipo'=>'required|unique:tipos,nome'
         ];
     }
+
 }
