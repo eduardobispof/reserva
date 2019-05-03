@@ -13,16 +13,9 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
-
+})->name('home');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/index', function(){
-		return view('index');
+Route::get('/home', function(){
+    return view('home');
 });
-
-Route::get('/equipamentos', function(){
-	return view('equipamentos');
-})->name('equipamentos');
+Route::resource('equipamentos', 'TiposController');

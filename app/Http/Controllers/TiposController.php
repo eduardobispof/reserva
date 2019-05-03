@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Requests\TiposRequest;
+use App\Http\Requests\TiposRequest;
 use App\Tipo;
+
 class TiposController extends Controller
 {
     /**
@@ -42,7 +43,10 @@ class TiposController extends Controller
     public function store(TiposRequest $request)
     {
 
-        Tipo::create($request);
+        $tipo = new Tipo;
+        $tipo->nome = $request->tipo;
+        $tipo->save();
+
         return redirect()->back();
     }
 
@@ -65,7 +69,7 @@ class TiposController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -77,7 +81,8 @@ class TiposController extends Controller
      */
     public function update(TiposRequest $request, $id)
     {
-        //
+        // Tipo::update($request);
+        return redirect()->back();
     }
 
     /**

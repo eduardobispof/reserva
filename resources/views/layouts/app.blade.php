@@ -43,11 +43,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href=" {{ route('home') }} " class="nav-link">Início</a>
+                            <a href="/home" class="nav-link">Início</a>
                         </li>
                         @auth
                             <li class="nav-item">
-                                <a href=" {{ route('equipamentos') }} " class="nav-link">Gerenciar Equipamentos</a>
+                                <a href="{{ route('equipamentos.index') }}" class="nav-link">Gerenciar Equipamentos</a>
                             </li>
                         @endauth
                     </ul>
