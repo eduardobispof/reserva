@@ -47,7 +47,7 @@
                         </li>
                         @auth
                             <li class="nav-item">
-                                <a href="{{ route('equipamentos.index') }}" class="nav-link">Gerenciar Equipamentos</a>
+                                <a href="{{ route('tipos.index') }}" class="nav-link">Gerenciar Equipamentos</a>
                             </li>
                         @endauth
                     </ul>

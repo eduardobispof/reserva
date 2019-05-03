@@ -20,8 +20,8 @@ class TiposController extends Controller
 
      public function index()
     {
-        $equipamentos = Tipo::all();
-        return view('equipamentos', compact('equipamentos'));
+        $tipos = Tipo::all();
+        return view('equipamentos', compact('tipos'));
     }
 
     /**
@@ -93,6 +93,8 @@ class TiposController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Tipo::find($id);
+        $delete->delete();
+        return redirect()->back();
     }
 }

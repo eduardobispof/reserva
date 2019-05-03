@@ -18,4 +18,4 @@ Auth::routes();
 Route::get('/home', function(){
     return view('home');
 });
-Route::resource('equipamentos', 'TiposController');
+Route::resource('tipos', 'TiposController');
