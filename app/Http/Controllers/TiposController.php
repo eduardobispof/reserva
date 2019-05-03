@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Requests\TiposRequest;
-
+use App\Tipo;
 class TiposController extends Controller
 {
     /**
@@ -12,9 +12,15 @@ class TiposController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
+    }
+
+     public function index()
+    {
+        $equipamentos = Tipo::all();
+        return view('equipamentos', compact('equipamentos'));
     }
 
     /**
@@ -24,7 +30,7 @@ class TiposController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +41,9 @@ class TiposController extends Controller
      */
     public function store(TiposRequest $request)
     {
-        //
+
+        Tipo::create($request);
+        return redirect()->back();
     }
 
     /**
