@@ -26,13 +26,13 @@
 					<br>
 					<table class="table table-bordered table-hover text-center">
 						<tbody>
-                            @foreach ($equipamentos as $key)
-                                <tr>
-                                    <td>
-                                        {{ $key->nome}}
-                                    </td>
-                                </tr>
-                            @endforeach
+              @foreach ($equipamentos as $key)
+                  <tr>
+                      <td>
+                          {{ $key->nome}}
+                      </td>
+                  </tr>
+              @endforeach
 						</tbody>
 					</table>
 				</div>

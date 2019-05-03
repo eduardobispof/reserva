@@ -45,28 +45,31 @@
 
         <div class="col-sm-4">
             <div class="m-1 border p-3" style="background-color: #fff;">
-                <h3>Cadastrar Equipamento</h3>
+                <h3>Reservar Equipamento</h3>
                 <hr>
                 <form action="">
                     @csrf
                     <div class="form-group">
-                        Nome do Equipamento:
-                        <input type="text" name="nome" class="form-control" required="" placeholder="Nome do equipamento...">
-                    </div>
-                     <div class="form-group">
-                        Tombamento:
-                        <input type="text" name="tombamento" class="form-control" required="" placeholder="Tombamento...">
-                    </div>
-                    <div class="form-group">
-                        Tipo do Equipamento:
+                        Equipamento:
                         <select name="tipo" class="form-control">
                             <option></option>
-                            <option value="Tipo">Tipo</option>
-                            <option value="Tipo">Tipo</option>
-                            <option value="Tipo">Tipo</option>
-                            <option value="Tipo">Tipo</option>
-                            <option value="Tipo">Tipo</option>
+                            <option value="Tipo">Nome - Tipo</option>
+                            <option value="Tipo">Nome - Tipo</option>
+                            <option value="Tipo">Nome - Tipo</option>
+                            <option value="Tipo">Nome - Tipo</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        Data:
+                        <input type="date" name="data" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        Hora de Início:
+                        <input type="time" name="hora_ini" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        Hora de Término:
+                        <input type="time" name="hora_fim" class="form-control" required="">
                     </div>
                     <br>
                     <button type="submit" class="btn btn-dark btn-block">Cadastrar Equipamento</button>
