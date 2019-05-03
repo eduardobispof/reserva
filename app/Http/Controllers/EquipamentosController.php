@@ -3,23 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\TiposRequest;
-use App\Tipo;
 use App\Equipamento;
-class TiposController extends Controller
+use App\Tipo;
+class EquipamentosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
-    }
-
-     public function index()
-    {
+      
         $equipamento = Equipamento::with('tipo')->get();
         $tipos = Tipo::all();
         return view('equipamentos')->with('equipamento', $equipamento)
@@ -33,7 +28,7 @@ class TiposController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -42,13 +37,13 @@ class TiposController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TiposRequest $request)
+    public function store(Request $request)
     {
-
-        $tipo = new Tipo;
-        $tipo->nome = $request->tipo;
-        $tipo->save();
-
+        $save = new Equipamento();
+        $save->nome = $request->nome;
+        $save->tombamento = $request->tombamento;
+        $save->tipo_id = $request->tipo;
+        $save->save();
         return redirect()->back();
     }
 
@@ -71,7 +66,7 @@ class TiposController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -81,10 +76,9 @@ class TiposController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TiposRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        // Tipo::update($request);
-        return redirect()->back();
+        //
     }
 
     /**
@@ -95,8 +89,6 @@ class TiposController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Tipo::find($id);
-        $delete->delete();
-        return redirect()->back();
+        //
     }
 }

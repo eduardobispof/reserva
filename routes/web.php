@@ -18,4 +18,7 @@ Auth::routes();
 Route::get('/home', function(){
     return view('home');
 });
+
 Route::resource('tipos', 'TiposController');
+
+Route::resource('equipamentos', 'EquipamentosController');
