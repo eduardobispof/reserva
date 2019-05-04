@@ -7,6 +7,16 @@
             <div class="m-2 border p-4">
                 <h3>Atualizar Equipamento</h3>
                 <br>
+                @if(session('msg'))
+                    <div class="alert-success p-2">
+                        {{session('msg')}}
+                    </div>
+                @endif
+                @if(session('msgr'))
+                    <div class="alert-danger p-2">
+                        {{session('msgr')}}
+                    </div>
+                @endif
                 <form action="{{route('equipamentos.update', $equipamento->id)}}" method="POST">
                     {{method_field('PUT')}}
                     @csrf
@@ -22,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         Tipo do Equipamento:
-                        <select name="tipo" class="form-control" required="">
+                        <select name="tipo" class="form-control" required>
                             <option value="">Selecione um Tipo</option>
                             @foreach($tipos as $key)
                                 <option value="{{$key->id}}">{{$key->nome}}</option>

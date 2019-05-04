@@ -56,15 +56,30 @@ class ReservaController extends Controller
      */
     public function store(ReservaRequest $request)
     {
-        $reserva = new Reserva();
-        $reserva->data = $request->data;
-        $reserva->hora_inicio = $request->hora_ini;
-        $reserva->hora_fim = $request->hora_fim;
-        $reserva->user_id = Auth::id();
-        $reserva->equipamento_id = $request->equipamento;
-        $reserva->save();
+        $reservado = Reserva::where([
+            ['hora_inicio', $request->hora_ini],
+            ['data', $request->data],
+            ['equipamento_id', $request->equipamento]
+        ])->orWhere([
+            ['hora_inicio','<','hora_fim'],
+            ['data', $request->data],
+            ['equipamento_id', $request->equipamento]
+        ])->get();
+        
+        if (sizeof($reservado) == 0){
+            $reserva = new Reserva();
+            $reserva->data = $request->data;
+            $reserva->hora_inicio = $request->hora_ini;
+            $reserva->hora_fim = $request->hora_fim;
+            $reserva->user_id = Auth::id();
+            $reserva->equipamento_id = $request->equipamento;
+            $reserva->save();
+            return redirect('home')->with('msg', 'Cadastrado com sucesso!');
+        }else{
+            return redirect('home')->with('msgr', 'Não foi possivel alugar o equipamento pois já existe uma reserva nesse horário!');
+        }
 
-        return redirect()->back();
+        // return redirect()->back();
     }
 
     /**
@@ -101,13 +116,28 @@ class ReservaController extends Controller
      */
     public function update(ReservaRequest $request, $id)
     {
-        $reserva = Reserva::find($id);
-        $reserva->data = $request->data;
-        $reserva->hora_inicio = $request->hora_ini;
-        $reserva->hora_fim = $request->hora_fim;
-        $reserva->equipamento_id = $request->equipamento;
-        $reserva->save();
-        return redirect('home')->with('msg', 'Atualizado com sucesso!');
+       
+        $reservado = Reserva::where([
+            ['hora_inicio', $request->hora_ini],
+            ['data', $request->data],
+            ['equipamento_id', $request->equipamento]
+        ])->orWhere([
+            ['hora_inicio','<','hora_fim'],
+            ['data', $request->data],
+            ['equipamento_id', $request->equipamento]
+        ])->get();
+
+        if (sizeof($reservado) == 0){
+            $reserva = Reserva::find($id);
+            $reserva->data = $request->data;
+            $reserva->hora_inicio = $request->hora_ini;
+            $reserva->hora_fim = $request->hora_fim;
+            $reserva->equipamento_id = $request->equipamento;
+            $reserva->save();
+            return redirect('home')->with('msg', 'Atualizado com sucesso!');
+        }else{
+            return redirect()->back()->with('msgr', 'Não foi possivel editar a reserva pois já existe uma reserva nesse horário ou dia!');
+        }
     }
 
     /**

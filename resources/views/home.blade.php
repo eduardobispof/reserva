@@ -12,6 +12,11 @@
                             {{session('msg')}}
                         </div>
                     @endif
+                    @if(session('msgr'))
+                        <div class="alert-danger p-2">
+                            {{session('msgr')}}
+                        </div>
+                    @endif
                     <div class="row p-3">
                         @foreach ($meusEquips[0]->equipamentos as $key => $meuEquip)
                                 <div class="col-4 p-0">
@@ -57,7 +62,8 @@
                             </div>
                         @endif
                         Equipamento:
-                        <select name="equipamento" class="form-control">
+                        <select name="equipamento" class="form-control" required>
+                            <option value="">Selecione um Equipamento </option>
                             @foreach ($equipamentos as $equipamento)
                                 <option value="{{$equipamento->id}}">{{$equipamento->nome}} - {{$equipamento->tipos}}</option>
                             @endforeach

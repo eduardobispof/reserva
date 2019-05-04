@@ -7,6 +7,11 @@
             <div class="m-1 border p-3" style="background-color: #fff;">
                 <h3>Editar Reserva</h3>
                 <hr>
+                @if(session('msgr'))
+                    <div class="alert-danger p-2">
+                        {{session('msgr')}}
+                    </div>
+                @endif
                 <form action="{{ route('reserva.update', $reserva->id)}}" method="POST">
                     @csrf
                     {{method_field('PUT')}}
@@ -21,7 +26,7 @@
                             </div>
                             @endif
                             Equipamento:
-                        <select name="equipamento" class="form-control">
+                        <select name="equipamento" class="form-control" required>
                             <option value="">Selecione um Equipamento</option>
                             @foreach ($equipamentos as $equipamento)
                                 <option value="{{$equipamento->id}}">{{$equipamento->nome}} - {{$equipamento->tipos}}</option>
