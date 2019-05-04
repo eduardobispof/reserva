@@ -10,7 +10,4 @@ class Tipo extends Model
 
     protected $fillable = ['nome', 'id'];
 
-    public function equipamentos(){
-        return $this->hasMany('App\Equipamento');
-    }
 }

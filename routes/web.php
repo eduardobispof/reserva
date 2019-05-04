@@ -14,10 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
 Auth::routes();
-Route::get('/home', function(){
-    return view('home');
+
+Route::prefix('reserva')->group(function () {
+    Route::post('/store', 'ReservaController@store')->name('reserva-store');
 });
+
+Route::get('/home', 'ReservaController@index');
 
 Route::resource('tipos', 'TiposController');
 

@@ -2,24 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Tipo;
+use App\User;
+use App\Reserva;
 use App\Equipamento;
 use Illuminate\Http\Request;
-use App\Http\Requests\TiposRequest;
-class EquipamentosController extends Controller
+use Illuminate\Support\Facades\Auth;
+
+class ReservaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function __construct()
     {
-      
-        $equipamento = Equipamento::with('tipo')->get();
-        $tipos = Tipo::all();
-        return view('equipamentos')->with('equipamento', $equipamento)
-            ->with('tipos', $tipos);
+        $this->middleware('auth');
+    }
+
+     public function index()
+    {
+        $equipamentos = Equipamento::with('tipos')->get();
+
+        $meusEquips = User::find(Auth::id())->with('equipamentos')->where('id', Auth::id())->get();
+
+        // dd($meusEquips[0]->equipamentos);
+        return view ('home', compact('meusEquips', 'equipamentos'));
     }
 
     /**
@@ -38,13 +47,16 @@ class EquipamentosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TiposRequest $request)
+    public function store(Request $request)
     {
-        $save = new Equipamento();
-        $save->nome = $request->nome;
-        $save->tombamento = $request->tombamento;
-        $save->tipo_id = $request->tipo;
-        $save->save();
+        $reserva = new Reserva();
+        $reserva->data = $request->data;
+        $reserva->hora_inicio = $request->hora_ini;
+        $reserva->hora_fim = $request->hora_fim;
+        $reserva->user_id = Auth::id();
+        $reserva->equipamento_id = $request->equipamento;
+        $reserva->save();
+
         return redirect()->back();
     }
 
@@ -67,9 +79,7 @@ class EquipamentosController extends Controller
      */
     public function edit($id)
     {
-        $equipamento = Equipamento::with('tipo')->where('id', $id)->first();
-        $tipos = Tipo::all();
-        return view('equipamentoEdit', compact('equipamento','tipos'));
+        //
     }
 
     /**
@@ -79,14 +89,9 @@ class EquipamentosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TiposRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $save = Equipamento::find($id);
-        $save->nome = $request->nome;
-        $save->tombamento = $request->tombamento;
-        $save->tipo_id = $request->tipo;
-        $save->save();
-        return redirect('equipamentos');
+        //
     }
 
     /**
@@ -97,8 +102,6 @@ class EquipamentosController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Equipamento::find($id);
-        $delete->delete();
-        return redirect()->back();
-    }   
+        //
+    }
 }

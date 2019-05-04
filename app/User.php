@@ -39,6 +39,6 @@ class User extends Authenticatable
     ];
 
     public function equipamentos(){
-        return $this->belongsToMany(Equipamento::class, 'reservas');
+        return $this->belongsToMany(Equipamento::class, 'reservas', 'user_id', 'equipamento_id');
     }
 }

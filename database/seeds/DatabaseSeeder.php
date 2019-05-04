@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $insert = [
             'name' => 'Admin',
 
-            'email' => 'Admin@Admin.com',
+            'email' => 'admin@admin.com',
 
             'email_verified_at' => now(),
 
