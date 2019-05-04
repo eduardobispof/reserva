@@ -24,12 +24,17 @@
 									<td>{{$key->tombamento}}</td>
 									<td>{{$key['tipo']->nome}}</td>
 									<td>
-										<a href="{{route('equipamentos.edit', $key->id)}}" class="text-primary">Editar</a>
-										<a href="" class="text-danger">Deletar</a>
+										<a href="{{route('equipamentos.edit', $key->id)}}" class="btn btn-outline-primary btn-block form-control mb-2">Editar</a>
+										<form action="{{route('equipamentos.destroy', $key->id)}}" method="POST">
+												{{method_field('DELETE')}}
+												@csrf
+												<button type="submit" class="btn btn-outline-danger btn-block form-control">Deletar</button>
+										</form>
 									</td>
 								</tr>
+							
 							@endforeach
-                        </tbody>
+						</tbody>
 					</table>
                 </div>
                 <br>

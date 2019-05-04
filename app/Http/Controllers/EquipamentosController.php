@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Equipamento;
 use App\Tipo;
+use App\Http\Requests\TiposRequest;
 class EquipamentosController extends Controller
 {
     /**
@@ -37,7 +38,7 @@ class EquipamentosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TiposRequest $request)
     {
         $save = new Equipamento();
         $save->nome = $request->nome;
@@ -66,7 +67,9 @@ class EquipamentosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipamento = Equipamento::with('tipo')->where('id', $id)->first();
+        $tipos = Tipo::all();
+        return view('equipamentoEdit', compact('equipamento','tipos'));
     }
 
     /**
@@ -76,9 +79,14 @@ class EquipamentosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TiposRequest $request, $id)
     {
-        //
+        $save = Equipamento::find($id);
+        $save->nome = $request->nome;
+        $save->tombamento = $request->tombamento;
+        $save->tipo_id = $request->tipo;
+        $save->save();
+        return redirect('equipamentos');
     }
 
     /**
@@ -89,6 +97,8 @@ class EquipamentosController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $delete = Equipamento::find($id);
+        $delete->delete();
+        return redirect()->back();
+    }   
 }
