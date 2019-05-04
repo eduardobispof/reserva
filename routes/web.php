@@ -17,11 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::prefix('reserva')->group(function () {
-    Route::post('/store', 'ReservaController@store')->name('reserva-store');
-});
+
+
+
 
 Route::get('/home', 'ReservaController@index');
+
+Route::resource('reserva', 'ReservaController');
 
 Route::resource('tipos', 'TiposController');
 

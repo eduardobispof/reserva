@@ -22,7 +22,7 @@
 								<tr>
 									<td>{{$key->nome}}</td>
 									<td>{{$key->tombamento}}</td>
-									<td>{{$key['tipo']->nome}}</td>
+									<td>{{$key->tipo->nome}}</td>
 									<td>
 										<a href="{{route('equipamentos.edit', $key->id)}}" class="btn btn-outline-primary btn-block form-control mb-2">Editar</a>
 										<form action="{{route('equipamentos.destroy', $key->id)}}" method="POST">

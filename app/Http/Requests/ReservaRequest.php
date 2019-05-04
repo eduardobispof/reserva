@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TiposRequest extends FormRequest
+class ReservaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,9 @@ class TiposRequest extends FormRequest
     public function rules()
     {
         return [
-            'tipo'=>'required|unique:tipos,nome',
-            'tombamento'=>'unique:equipamentos,tombamento'
+            'data'=>'required',
+            'hora_ini' => 'required',
+            'hora_fim' => 'after:hora_ini'
         ];
     }
-    public function message(){
-
-    }
-
 }

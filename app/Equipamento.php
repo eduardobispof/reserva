@@ -10,10 +10,10 @@ class Equipamento extends Model
 {
     protected $table = 'equipamentos';
 
-    protected $fillable = ['nome', 'tipo_id'];
+    protected $fillable = ['nome'];
 
-    public function tipos(){
-        return $this->hasMany(Tipo::class, 'id', 'tipo_id');
+    public function tipo(){
+        return $this->belongsTo('App\Tipo');
     }
 
     public function users()
