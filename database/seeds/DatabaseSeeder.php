@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Tipo;
+use App\Equipamento;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        $insert = [
+        $insertUser = [
             'name' => 'Admin',
 
             'email' => 'admin@admin.com',
@@ -24,6 +26,34 @@ class DatabaseSeeder extends Seeder
             'remember_token' => 1
         ];
 
-        User::create($insert);
+        User::create($insertUser);
+
+        //Tipos
+        Tipo::create(['nome'=>'Projetor']);
+        Tipo::create(['nome'=>'Caixa de Som']);
+        Tipo::create(['nome'=>'Cadeira']);
+        Tipo::create(['nome'=>'Microfone']);
+        //Equipamentos
+        Equipamento::create([
+            'nome'=>'Projetor Sala 2',
+            'tombamento'=>520,
+            'tipo_id' =>'1'
+        ]);
+        Equipamento::create([
+            'nome'=>'Caixa de Som Sala 2',
+            'tombamento'=>420,
+            'tipo_id' =>'2'
+        ]);
+        Equipamento::create([
+            'nome'=>'Cadeira do L2',
+            'tombamento'=>320,
+            'tipo_id' =>'3'
+        ]);
+        Equipamento::create([
+            'nome'=>'Microfone da DAEE',
+            'tombamento'=>220,
+            'tipo_id' =>'4'
+        ]);
+        
     }
 }

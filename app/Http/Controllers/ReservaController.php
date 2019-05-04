@@ -76,6 +76,7 @@ class ReservaController extends Controller
             $reserva->save();
             return redirect('home')->with('msg', 'Cadastrado com sucesso!');
         }else{
+
             return redirect('home')->with('msgr', 'Não foi possivel alugar o equipamento pois já existe uma reserva nesse horário!');
         }
 
@@ -116,7 +117,6 @@ class ReservaController extends Controller
      */
     public function update(ReservaRequest $request, $id)
     {
-       
         $reservado = Reserva::where([
             ['hora_inicio', $request->hora_ini],
             ['data', $request->data],
@@ -126,7 +126,7 @@ class ReservaController extends Controller
             ['data', $request->data],
             ['equipamento_id', $request->equipamento]
         ])->get();
-
+        
         if (sizeof($reservado) == 0){
             $reserva = Reserva::find($id);
             $reserva->data = $request->data;
